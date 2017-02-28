@@ -8,26 +8,28 @@
     <title>Add student</title>
 </head>
 <body>
-<form method="POST" action="/student/add" name="frmAddStudent">
+<form method="POST" action="<c:out value="${action}"/>" name="frmAddStudent">
+    <input type="hidden" name="id" value="<c:out value="${student.id}"/>"/>
     <div>
         <label>Last Name</label>
-        <input type="text" name="lastName" value="<c:out value="${user.lastName}"/>"/>
+        <input type="text" name="lastName" value="<c:out value="${student.lastName}"/>"/>
     </div>
     <div>
         <label>First Name</label>
-        <input type="text" name="firstName" value="<c:out value="${user.firstName}"/>"/>
+        <input type="text" name="firstName" value="<c:out value="${student.firstName}"/>"/>
     </div>
     <div>
         <label>Middle Name</label>
-        <input type="text" name="middleName" value="<c:out value="${user.middleName}"/>"/>
+        <input type="text" name="middleName" value="<c:out value="${student.middleName}"/>"/>
     </div>
     <div>
         <label>Home address</label>
-        <input type="text" name="homeAddress" value="<c:out value="${user.homeAddress}"/>"/>
+        <input type="text" name="homeAddress" value="<c:out value="${student.homeAddress}"/>"/>
     </div>
     <div>
         <label>Date Of Birth</label>
-        <input type="text" name="dateOfBirth" value="<c:out value="${fmtDate}"/>"/>
+        <input type="text" name="dateOfBirth" value="<fmt:formatDate pattern="yyyy-MM-dd"
+                                   value="${student.dateOfBirth}"/>"/>
     </div>
     <div>
         <label>Student Group</label>

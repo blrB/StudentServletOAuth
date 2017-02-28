@@ -3,7 +3,6 @@ package by.bsuir.aipos.service;
 import by.bsuir.aipos.model.Student;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 

@@ -32,13 +32,17 @@
             <td><c:out value="${student.firstName}" /></td>
             <td><c:out value="${student.middleName}" /></td>
     		<td><c:out value="${student.homeAddress }" /></td>
-            <td><p><fmt:formatDate pattern="yyyy-MM-dd"
-                                   value="${student.dateOfBirth}"/></p></td>
+            <td><fmt:formatDate pattern="yyyy-MM-dd"
+                                   value="${student.dateOfBirth}"/></td>
             <td><c:out value="${student.studentGroup.name}" /></td>
-            <td><a href="/student/edit?userId=<c:out value="${student.id}"/>">Edit</a></td>
+            <td>
+                <a href="/student/edit?userId=<c:out value="${student.id}"/>" class="btn btn-default">
+                    Edit
+                </a>
+            </td>
             <td>
                 <form method="POST"  action="/student/delete?userId=<c:out value="${student.id}"/>">
-                    <input type="submit" value="Delete"/>
+                    <input type="submit" class="btn btn-default" value="Delete"/>
                 </form>
             </tr>
         </c:forEach>

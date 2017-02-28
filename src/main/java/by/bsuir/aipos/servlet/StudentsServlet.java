@@ -1,7 +1,6 @@
 package by.bsuir.aipos.servlet;
 
 import by.bsuir.aipos.model.Student;
-import by.bsuir.aipos.service.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/students")
+@WebServlet({"/students"})
 public class StudentsServlet extends HttpServlet {
 
     @Override
@@ -20,7 +19,7 @@ public class StudentsServlet extends HttpServlet {
 
         List<Student> students = new StudentUtils(request).getStudents();
         request.setAttribute("students", students);
-        request.getRequestDispatcher("students.jsp").forward(request, response);
+        request.getRequestDispatcher("/students.jsp").forward(request, response);
     }
 
 }

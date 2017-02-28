@@ -14,8 +14,13 @@ import java.util.Date;
 import java.util.List;
 
 public class StudentUtils {
-
+    /**
+     * Service for handling with student groups
+     */
     private static StudentService studentService = new StudentServiceImpl();
+    /**
+     * Service for handling with students
+     */
     private static StudentGroupService studentGroupService = new StudentGroupServiceImpl();
     private HttpServletRequest request;
 
@@ -23,8 +28,16 @@ public class StudentUtils {
         this.request = request;
     }
 
+    /**
+     * Save or update student
+     *
+     * @return saved student
+     */
     public Student saveStudent(){
         Student student = new Student();
+        if (!request.getParameter("id").isEmpty()) {
+            student.setId(Integer.parseInt(request.getParameter("id")));
+        }
         student.setFirstName(request.getParameter("firstName"));
         student.setLastName(request.getParameter("lastName"));
         student.setMiddleName(request.getParameter("middleName"));
@@ -48,6 +61,12 @@ public class StudentUtils {
         return student;
     }
 
+    /**
+     * Check property of student
+     *
+     * @param student
+     * @return true if student have all needed property
+     */
     private boolean validStudent(Student student) {
         return !(
                 student.getFirstName().isEmpty() ||
@@ -58,6 +77,26 @@ public class StudentUtils {
         );
     }
 
+    /**
+     * Get student
+     *
+     * @return student
+     */
+    public Student getStudent() {
+        int id = Integer.parseInt(request.getParameter("userId"));
+        Student student = new Student();
+        if (studentService.get(id) != null){
+            student = studentService.get(id);
+            StudentLogger.getLogger().info("Get student id : " + id);
+        } else {
+            StudentLogger.getLogger().warn("Get not valid student id for get, id : " + id);
+        }
+        return student;
+    }
+
+    /**
+     * Delete student
+     */
     public void deleteStudent(){
         int id = Integer.parseInt(request.getParameter("userId"));
         if (studentService.get(id) != null){
@@ -68,11 +107,21 @@ public class StudentUtils {
         }
     }
 
+    /**
+     * Get all student
+     *
+     * @return list of student
+     */
     public List<Student> getStudents(){
         StudentLogger.getLogger().info("Get all student");
         return studentService.getAll();
     }
 
+    /**
+     * Get all student groups
+     *
+     * @return list of student groups
+     */
     public List<StudentGroup> getStudentGroups(){
         StudentLogger.getLogger().info("Get all student group");
         return studentGroupService.getAll();
