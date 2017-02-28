@@ -14,15 +14,13 @@ import java.util.List;
 @WebServlet("/students")
 public class StudentsServlet extends HttpServlet {
 
-    private StudentService studentService = new StudentServiceImpl();
-
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Student> students = studentService.getAll();
-        req.setAttribute("students", students);
-        req.getRequestDispatcher("students.jsp").forward(req, resp);
+        List<Student> students = new StudentUtils(request).getStudents();
+        request.setAttribute("students", students);
+        request.getRequestDispatcher("students.jsp").forward(request, response);
     }
 
 }

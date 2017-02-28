@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link href="bootstrap.css" rel="stylesheet" type="text/css">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="en_US" />
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
 <html>
 <head><title>Students</title></head>
 <body>
@@ -10,7 +12,7 @@
     </div>
 </div>
 <div class="container">
-    <h3 class="pull-right">Add new student</h3>
+    <h3 class="pull-right"><a href="/student/add">Add new student</a></h3>
 </div>
 <div class="container table-responsive">
     <table class="table">
@@ -30,11 +32,15 @@
             <td><c:out value="${student.firstName}" /></td>
             <td><c:out value="${student.middleName}" /></td>
     		<td><c:out value="${student.homeAddress }" /></td>
-            <td><c:out value="${student.dateOfBirth}" /></td>
+            <td><p><fmt:formatDate pattern="yyyy-MM-dd"
+                                   value="${student.dateOfBirth}"/></p></td>
             <td><c:out value="${student.studentGroup.name}" /></td>
-            <td>Edit</td>
-            <td>Delete</td>
-        </tr>
+            <td><a href="/student/edit?userId=<c:out value="${student.id}"/>">Edit</a></td>
+            <td>
+                <form method="POST"  action="/student/delete?userId=<c:out value="${student.id}"/>">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </tr>
         </c:forEach>
     </table>
 </div>
