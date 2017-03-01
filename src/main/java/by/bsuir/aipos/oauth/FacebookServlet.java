@@ -46,7 +46,7 @@ public class FacebookServlet extends HttpServlet implements OAuthServlet{
             throws ServletException, IOException {
 
         OAuthUtils oAuthUtils = new OAuthUtils(this, request, response);
-        oAuthUtils.doGet();
+        oAuthUtils.authorization();
     }
 
     @Override

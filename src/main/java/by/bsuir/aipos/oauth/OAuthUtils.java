@@ -31,10 +31,10 @@ public class OAuthUtils {
      * @throws ServletException
      * @throws IOException
      */
-    public void doGet() throws ServletException, IOException {
+    public void authorization() throws ServletException, IOException {
         AuthorizationUtils authorizationUtils = new AuthorizationUtils(request);
         if (authorizationUtils.isNotAuthorization()) {
-            String accessToken = "";
+            String accessToken;
             if (oAuthServlet.getError(request)) {
                 StudentLogger.getLogger().error("Error. Not get code!");
                 PrintWriter out = response.getWriter();
