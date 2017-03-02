@@ -10,6 +10,9 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class EMF implements ServletContextListener {
 
+    /**
+     * EntityManagerFactory will be created when the web application initialization process is starting.
+     */
     private static EntityManagerFactory emf;
 
     @Override
@@ -22,6 +25,11 @@ public class EMF implements ServletContextListener {
         emf.close();
     }
 
+    /**
+     * Create EntityManager from EntityManagerFactory
+     *
+     * @return EntityManager
+     */
     public static EntityManager createEntityManager() {
         if (emf == null) {
             throw new IllegalStateException("Context is not initialized yet.");

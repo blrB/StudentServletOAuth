@@ -28,10 +28,9 @@ public class OAuthUtils {
      * Method implements OAuth protocol for authorization session
      * and redirect on students page if authorization pass successful
      *
-     * @throws ServletException
      * @throws IOException
      */
-    public void authorization() throws ServletException, IOException {
+    public void authorization() throws IOException {
         AuthorizationUtils authorizationUtils = new AuthorizationUtils(request);
         if (authorizationUtils.isNotAuthorization()) {
             String accessToken;
