@@ -44,12 +44,12 @@
             </thead>
             <tbody>
             <c:forEach var="student" items="${students}" varStatus="status">
-                <tr>
-                    <td><c:out value="${student.lastName}"/></td>
-                    <td><c:out value="${student.firstName}"/></td>
-                    <td><c:out value="${student.middleName}"/></td>
-                    <td><c:out value="${student.homeAddress }"/></td>
-                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${student.dateOfBirth}"/></td>
+                <tr itemtype="http://schema.org/Person">
+                    <td itemprop="familyName"><c:out value="${student.lastName}"/></td>
+                    <td itemprop="givenName"><c:out value="${student.firstName}"/></td>
+                    <td itemprop="alternateName"><c:out value="${student.middleName}"/></td>
+                    <td itemprop="address"><c:out value="${student.homeAddress }"/></td>
+                    <td itemprop="birthDate"><fmt:formatDate pattern="yyyy-MM-dd" value="${student.dateOfBirth}"/></td>
                     <td><c:out value="${student.studentGroup.name}"/></td>
                     <td>
                         <a href="/student/edit?userId=<c:out value="${student.id}"/>"

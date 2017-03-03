@@ -12,7 +12,7 @@
     <!-- Materialize fonts -->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Main css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -32,34 +32,32 @@
                       role="form" class="form-horizontal">
                     <input type="hidden" name="id" value="<c:out value="${student.id}"/>"/>
                     <div class="input-field">
-                        <input placeholder="Enter last name..." type="text" id="lastName"
+                        <input placeholder="Enter last name..." type="text" name="lastName" id="lastName"
                                value="<c:out value="${student.lastName}"/>"/>
                         <label for="lastName">Last Name</label>
                     </div>
                     <div class="input-field">
-                        <input placeholder="Enter first name..." type="text" id="firstName"
+                        <input placeholder="Enter first name..." name="firstName" type="text" id="firstName"
                                value="<c:out value="${student.firstName}"/>"/>
                         <label for="firstName">First Name</label>
                     </div>
                     <div class="input-field">
-                        <input placeholder="Enter middle name..." type="text" id="middleName"
+                        <input placeholder="Enter middle name..." name="middleName" type="text" id="middleName"
                                value="<c:out value="${student.middleName}"/>"/>
                         <label for="middleName">Middle Name</label>
                     </div>
                     <div class="input-field">
-                        <input placeholder="Enter home address..." type="text" id="homeAddress"
+                        <input placeholder="Enter home address..." name="homeAddress" type="text" id="homeAddress"
                                value="<c:out value="${student.homeAddress}"/>"/>
                         <label for="homeAddress">Home address</label>
                     </div>
+                    <label for="dateOfBirth">Date Of Birth</label>
                     <div class="input-field">
-                        <label for="dateOfBirth">Date Of Birth</label>
-                        <%--<input placeholder="Enter birthday..." type="text" id="dateOfBirth" value="<fmt:formatDate pattern="yyyy-MM-dd"--%>
-                                   <%--value="${student.dateOfBirth}"/>"/>--%>
-                        <input type="date" class="datepicker"  id="dateOfBirth" value="<fmt:formatDate pattern="yyyy-MM-dd"
+                        <input type="text" class="datepicker"  name="dateOfBirth" id="dateOfBirth" value="<fmt:formatDate pattern="yyyy-MM-dd"
                                    value="${student.dateOfBirth}"/>">
                     </div>
                     <div class="input-field">
-                        <select id="group">
+                        <select name="group" id="group">
                             <c:forEach var="group" items="${groups}">
                                 <option value="${group.name}">
                                     <c:out value="${group.name}"/>
