@@ -13,12 +13,15 @@ public class LoginFilter implements Filter {
      * Filter for redirect on login page if user request page not not accessible to authorized users
      */
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+            throws IOException, ServletException {
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         AuthorizationUtils authorizationUtils = new AuthorizationUtils(request);
         String loginURI = request.getContextPath() + "/login";
-        if (authorizationUtils.isAuthorization() || authorizationUtils.isLoginRequest()) {
+        if (authorizationUtils.isAuthorization() || authorizationUtils.isLoginRequest() ||
+                authorizationUtils.isResourcesRequest()) {
             filterChain.doFilter(request, response);
         } else {
             response.sendRedirect(loginURI);

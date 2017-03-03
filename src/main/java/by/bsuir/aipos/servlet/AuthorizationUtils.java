@@ -36,7 +36,14 @@ public class AuthorizationUtils {
      * @return true if URL contains part of logIn URL
      */
     public boolean isLoginRequest(){
-        return request.getRequestURI().contains("login") ||
-                request.getRequestURI().contains("oauth");
+        return request.getRequestURI().startsWith("/login") ||
+                request.getRequestURI().startsWith("/vk/oauth") ||
+                request.getRequestURI().startsWith("/fb/oauth");
+    }
+
+    public boolean isResourcesRequest(){
+        return request.getRequestURI().startsWith("/js") ||
+                request.getRequestURI().startsWith("/css") ||
+                request.getRequestURI().startsWith("/font");
     }
 }

@@ -53,23 +53,59 @@ public class AuthorizationUtilsTest {
 
     @Test
     public void isLoginRequestLogin() throws Exception {
-        when(request.getRequestURI()).thenReturn("http://*/login");
+        when(request.getRequestURI()).thenReturn("/login");
         AuthorizationUtils authorizationUtils = new AuthorizationUtils(request);
         assert authorizationUtils.isLoginRequest();
     }
 
     @Test
-    public void isLoginRequestOAuth() throws Exception {
-        when(request.getRequestURI()).thenReturn("http://*/oauth");
+    public void isLoginRequestOAuthVK() throws Exception {
+        when(request.getRequestURI()).thenReturn("/vk/oauth");
+        AuthorizationUtils authorizationUtils = new AuthorizationUtils(request);
+        assert authorizationUtils.isLoginRequest();
+    }
+
+    @Test
+    public void isLoginRequestOAuthFB() throws Exception {
+        when(request.getRequestURI()).thenReturn("/fb/oauth");
         AuthorizationUtils authorizationUtils = new AuthorizationUtils(request);
         assert authorizationUtils.isLoginRequest();
     }
 
     @Test
     public void isLoginRequestFalse() throws Exception {
-        when(request.getRequestURI()).thenReturn("http://*/students");
+        when(request.getRequestURI()).thenReturn("/students");
         AuthorizationUtils authorizationUtils = new AuthorizationUtils(request);
         assert !authorizationUtils.isLoginRequest();
     }
+
+    @Test
+    public void isResourcesRequestJS() throws Exception {
+        when(request.getRequestURI()).thenReturn("/js/1.js");
+        AuthorizationUtils authorizationUtils = new AuthorizationUtils(request);
+        assert authorizationUtils.isResourcesRequest();
+    }
+
+    @Test
+    public void isResourcesRequestCSS() throws Exception {
+        when(request.getRequestURI()).thenReturn("/css/1.css");
+        AuthorizationUtils authorizationUtils = new AuthorizationUtils(request);
+        assert authorizationUtils.isResourcesRequest();
+    }
+
+    @Test
+    public void isResourcesRequestFont() throws Exception {
+        when(request.getRequestURI()).thenReturn("/font/1.ttf");
+        AuthorizationUtils authorizationUtils = new AuthorizationUtils(request);
+        assert authorizationUtils.isResourcesRequest();
+    }
+
+    @Test
+    public void isResourcesRequest() throws Exception {
+        when(request.getRequestURI()).thenReturn("/students");
+        AuthorizationUtils authorizationUtils = new AuthorizationUtils(request);
+        assert !authorizationUtils.isResourcesRequest();
+    }
+
 
 }
