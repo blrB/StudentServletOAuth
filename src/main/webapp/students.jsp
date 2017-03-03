@@ -1,51 +1,75 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="en_US" />
-<link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+<fmt:setLocale value="en_US"/>
+<!DOCTYPE html>
 <html>
-<head><title>Students</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <!-- Materialize fonts -->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
 <body>
+<div class="navbar-fixed">
+    <nav class="light-blue darken-4" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" class="brand-logo">Laboratory work №5-6</a>
+        </div>
+    </nav>
+</div>
 <div class="container">
-    <div class="page-header">
-        <h1>Students</h1>
+    <div class="section">
+        <div class="row" align="right">
+            <a class="waves-effect waves-light btn" href="/student/add">Add new student</a>
+        </div>
+        <table class="row bordered striped responsive-table">
+            <thead>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Home Address</th>
+                <th>Date Of Birth</th>
+                <th>Group</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="student" items="${students}" varStatus="status">
+                <tr>
+                    <td><c:out value="${student.lastName}"/></td>
+                    <td><c:out value="${student.firstName}"/></td>
+                    <td><c:out value="${student.middleName}"/></td>
+                    <td><c:out value="${student.homeAddress }"/></td>
+                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${student.dateOfBirth}"/></td>
+                    <td><c:out value="${student.studentGroup.name}"/></td>
+                    <td>
+                        <a href="/student/edit?userId=<c:out value="${student.id}"/>"
+                           class="waves-effect waves-light btn">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <form class="student-table-input" method="POST" action="/student/delete?userId=<c:out value="${student.id}"/>">
+                            <input type="submit" class="btn btn-default" value="Delete"/>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
 </div>
-<div class="container">
-    <h3 class="pull-right"><a href="/student/add">Add new student</a></h3>
-</div>
-<div class="container table-responsive">
-    <table class="table">
-        <tr>
-            <td>Last Name</td>
-            <td>First Name</td>
-            <td>Middle Name</td>
-            <td>Home Address</td>
-            <td>Date Of Birth</td>
-            <td>Group</td>
-            <td>Edit</td>
-            <td>Delete</td>
-        </tr>
-        <c:forEach var="student" items="${students}" varStatus="status">
-    	<tr>
-            <td><c:out value="${student.lastName}" /></td>
-            <td><c:out value="${student.firstName}" /></td>
-            <td><c:out value="${student.middleName}" /></td>
-    		<td><c:out value="${student.homeAddress }" /></td>
-            <td><fmt:formatDate pattern="yyyy-MM-dd"
-                                   value="${student.dateOfBirth}"/></td>
-            <td><c:out value="${student.studentGroup.name}" /></td>
-            <td>
-                <a href="/student/edit?userId=<c:out value="${student.id}"/>" class="btn btn-default">
-                    Edit
-                </a>
-            </td>
-            <td>
-                <form method="POST"  action="/student/delete?userId=<c:out value="${student.id}"/>">
-                    <input type="submit" class="btn btn-default" value="Delete"/>
-                </form>
-            </tr>
-        </c:forEach>
-    </table>
-</div>
-</body></html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Materialize -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+</body>
+</html>
