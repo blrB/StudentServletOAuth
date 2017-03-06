@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <servlet>
+        <servlet-name>VkontakteServlet</servlet-name>
+        <servlet-class>by.bsuir.aipos.oauth.VkontakteServlet</servlet-class>
+        <init-param>
+            <param-name>clientId</param-name>
+            <param-value>5900444</param-value>
+        </init-param>
+        <init-param>
+            <param-name>clientSecret</param-name>
+            <param-value>wGxkQqI6MTgmVTQxpkYQ</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redirectUri</param-name>
+            <param-value>http://localhost:8080/vk/oauth</param-value>
+        </init-param>
+        <init-param>
+            <param-name>environment</param-name>
+            <param-value>https://oauth.vk.com/</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FacebookServlet</servlet-name>
+        <servlet-class>by.bsuir.aipos.oauth.FacebookServlet</servlet-class>
+        <init-param>
+            <param-name>clientId</param-name>
+            <param-value>293015447783423</param-value>
+        </init-param>
+        <init-param>
+            <param-name>clientSecret</param-name>
+            <param-value>1662772433c316cf0e9e24619a4cbaca</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redirectUri</param-name>
+            <param-value>http://localhost:8080/fb/oauth</param-value>
+        </init-param>
+        <init-param>
+            <param-name>authUrl</param-name>
+            <param-value>https://www.facebook.com</param-value>
+        </init-param>
+        <init-param>
+            <param-name>tokenUrl</param-name>
+            <param-value>https://graph.facebook.com</param-value>
+        </init-param>
+    </servlet>
+</web-app>

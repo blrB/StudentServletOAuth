@@ -2,12 +2,12 @@ package by.bsuir.aipos.servlet;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.powermock.api.mockito.PowerMockito;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class AuthorizationUtilsTest {
@@ -17,8 +17,8 @@ public class AuthorizationUtilsTest {
 
     @Before
     public void init(){
-        request = mock(HttpServletRequest.class);
-        httpSession = mock(HttpSession.class);
+        request = PowerMockito.mock(HttpServletRequest.class);
+        httpSession = PowerMockito.mock(HttpSession.class);
         when(request.getSession()).thenReturn(httpSession);
     }
 

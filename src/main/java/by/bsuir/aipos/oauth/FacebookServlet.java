@@ -3,7 +3,6 @@ import java.io.*;
 import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,12 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import by.bsuir.aipos.servlet.StudentLogger;
 import org.apache.commons.httpclient.methods.PostMethod;
 
-@WebServlet(urlPatterns = {"/fb/oauth" }, initParams = {
-        @WebInitParam(name = "clientId", value = "293015447783423"),
-        @WebInitParam(name = "clientSecret", value = "1662772433c316cf0e9e24619a4cbaca"),
-        @WebInitParam(name = "redirectUri", value = "http://localhost:8080/fb/oauth"),
-        @WebInitParam(name = "authUrl", value = "https://www.facebook.com"),
-        @WebInitParam(name = "tokenUrl", value = "https://graph.facebook.com"),})
+/**
+ * Config for FacebookServlet contains in WEB-INF/web.xml
+ */
+@WebServlet(name = "FacebookServlet", urlPatterns = {"/fb/oauth" })
 public class FacebookServlet extends HttpServlet implements OAuthServlet{
 
     private String clientId = null;

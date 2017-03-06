@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="navbar-fixed">
-    <nav class="light-blue darken-4" role="navigation">
+    <nav class="light-blue darken-4">
         <div class="nav-wrapper container">
             <a id="logo-container" class="brand-logo">Laboratory work №5-6</a>
         </div>
@@ -26,7 +26,7 @@
 </div>
 <div class="container">
     <div class="section">
-        <div class="row" align="right">
+        <div class="row right">
             <a class="waves-effect waves-light btn" href="/student/add">Add new student</a>
         </div>
         <table class="row bordered striped responsive-table">
@@ -44,7 +44,7 @@
             </thead>
             <tbody>
             <c:forEach var="student" items="${students}" varStatus="status">
-                <tr itemtype="http://schema.org/Person">
+                <tr itemscope itemtype="http://schema.org/Person">
                     <td itemprop="familyName"><c:out value="${student.lastName}"/></td>
                     <td itemprop="givenName"><c:out value="${student.firstName}"/></td>
                     <td itemprop="alternateName"><c:out value="${student.middleName}"/></td>

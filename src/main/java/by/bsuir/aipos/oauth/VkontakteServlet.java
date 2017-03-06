@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +16,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-@WebServlet(urlPatterns = {"/vk/oauth" }, initParams = {
-        @WebInitParam(name = "clientId", value = "5900444"),
-        @WebInitParam(name = "clientSecret", value = "wGxkQqI6MTgmVTQxpkYQ"),
-        @WebInitParam(name = "redirectUri", value = "http://localhost:8080/vk/oauth"),
-        @WebInitParam(name = "environment", value = "https://oauth.vk.com/"), })
+/**
+ * Config for VkontakteServlet contains in WEB-INF/web.xml
+ */
+@WebServlet(name="VkontakteServlet", urlPatterns = {"/vk/oauth" })
 public class VkontakteServlet extends HttpServlet implements OAuthServlet{
 
     private String clientId = null;
